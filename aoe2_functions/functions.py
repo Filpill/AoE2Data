@@ -22,31 +22,6 @@ def api2df(requestAddr):
 
 
 
-#Function to Detect Operating System and Adjust Pathing to Respective Filesystem
-def pathing(folder_path,filename):
-
-    #Windows Operating System
-    if 'win' in sys.platform:
-        if folder_path == 'root':
-            filepath = f'{sys.path[0]}\\{filename}'
-        else:
-            filepath = f'{sys.path[0]}\\{folder_path}\\{filename}'
-    #Linux/Mac Operating Sytem
-    else:
-        if folder_path == 'root':
-            filepath = f'{sys.path[0]}/{filename}'
-        else:
-            filepath = f'{sys.path[0]}/{folder_path}/{filename}'
-
-    return filepath
-
-
-
-# Folder Clean-up Process - Removing all the saved png's
-def png_cleaner():
-    for picture in os.listdir(sys.path[0]):
-        if picture.endswith('.png'):
-            os.remove(picture)
 
 
 
@@ -154,3 +129,31 @@ def xlsx_chart(v_idx,v_space,chart_path,sheet_name,worksheet,workbook,writer):
 
     #Return v_idx and graph path ahead of next chart production
     return v_idx,sheet_name,worksheet
+
+
+
+#Function to Detect Operating System and Adjust Pathing to Respective Filesystem
+def pathing(folder_path,filename):
+
+    #Windows Operating System
+    if 'win' in sys.platform:
+        if folder_path == 'root':
+            filepath = f'{sys.path[0]}\\{filename}'
+        else:
+            filepath = f'{sys.path[0]}\\{folder_path}\\{filename}'
+    #Linux/Mac Operating Sytem
+    else:
+        if folder_path == 'root':
+            filepath = f'{sys.path[0]}/{filename}'
+        else:
+            filepath = f'{sys.path[0]}/{folder_path}/{filename}'
+
+    return filepath
+
+
+
+# Folder Clean-up Process - Removing all the saved png's
+def png_cleaner():
+    for picture in os.listdir(sys.path[0]):
+        if picture.endswith('.png'):
+            os.remove(picture)
